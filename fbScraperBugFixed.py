@@ -1,6 +1,5 @@
 #this scrape will scrape post TEXT and reactions for upto 24 posts in a day
-#for more info on how to use this scraper, watch this short video.
-#hope it helps
+
 
 #import dependencies
 import json
