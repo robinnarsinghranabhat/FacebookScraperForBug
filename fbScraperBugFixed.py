@@ -8,9 +8,10 @@ import requests
 import pandas as pd
 
 # please continously update this  from facebook graph api ..
-access_new = 'EAACEdEose0cBAC6yxY0w6A8lnQXZAuwa9BgKprtB3mVkFVZA7NGfAS7ZBKPIZAY1hQPGycsRhZBOUyzFnt4QtC2LfjuMQ6WgDdrY437FE11A8DykO4bgtMSEgVrfcouQZBgU5j01GONXOu82IZCByGyRUn73zKPvDrhbzWKT7xAOy0NZC5HiKbyrK9fWgKhZATMEZD'
-
-aceess_again = 'EAACEdEose0cBAF5QiCVzdOW2b1zsS2T5feSF822yoKlEykH2oQ6XOIE5X7obhNyQFwTc1nWZC61gXflWCLnPmnPzArNNTyAIWGgA8AQB6hOTJrZCNAnJx9ZCY7nCWWw49Ham5i1LVoed2EWYX9PL2vT1bAaja41MbjzotjUAZAl8Y2OW8n1FJMtEEcoKsaa9n4acWcsznAZDZD'
+#go to :  https://developers.facebook.com/tools/explorer/145634995501895/
+#LOG IN to facebook as said in the page
+#copy the access token you get and paste below !
+access_key = 'EAACEdEose0cBAF5QiCVzdOW2b1zsS2T5feSF822yoKlEykH2oQ6XOIE5X7obhNyQFwTc1nWZC61gXflWCLnPmnPzArNNTyAIWGgA8AQB6hOTJrZCNAnJx9ZCY7nCWWw49Ham5i1LVoed2EWYX9PL2vT1bAaja41MbjzotjUAZAl8Y2OW8n1FJMtEEcoKsaa9n4acWcsznAZDZD'
 
 # this is the list of days for which you want to scrape
 # the days are not in dd/mm/yy format but in unixtimestamp format
@@ -22,7 +23,7 @@ unixtimeStamps = [1512677592, 1512763992, 1512850392, 1512936792, 1513023192, 15
 # enter page name you want to scrape and a new-unexpired access token
 
 # this function scrapes reactions from a post of a page..
-def makeReactionsTableFromPost(pagename, access_token=access_new):
+def makeReactionsTableFromPost(pagename, access_token=access_key):
     reactionFrames = []
     reactionString = '{reactions.type(LIKE).summary(total_count).limit(0).as(like),reactions.type(LOVE).summary(total_count).limit(0).as(love),reactions.type(WOW).summary(total_count).limit(0).as(wow),reactions.type(HAHA).summary(total_count).limit(0).as(haha),reactions.type(SAD).summary(total_count).limit(0).as(sad),reactions.type(ANGRY).summary(total_count).limit(0).as(angry)}'
     for i in unixtimeStamps:
@@ -43,7 +44,7 @@ def makeReactionsTableFromPost(pagename, access_token=access_new):
 
 # gives back the pandas dataframe for list of post messages(TEXT's)
 
-def createPostTextfromURL(pagename, access_token=access_new):
+def createPostTextfromURL(pagename, access_token=access_key):
     # stores post Text
     dataframes = []
     for i in unixtimeStamps:
@@ -61,8 +62,8 @@ def createPostTextfromURL(pagename, access_token=access_new):
 # returns pandas dataframe containing reactions and post Text
 
 def getPostTextandReactions(pagename):
-    pd1 = createPostTextfromURL(pagename, access_token=aceess_again)
-    pd2 = makeReactionsTableFromPost(pagename, access_token=aceess_again)
+    pd1 = createPostTextfromURL(pagename, access_token= access_key)
+    pd2 = makeReactionsTableFromPost(pagename, access_token= access_key)
     cols_to_elect = ['like', 'love', 'sad', 'haha', 'wow', 'angry', 'message']
     return pd.concat([pd1, pd2], axis=1)[cols_to_elect]
 
