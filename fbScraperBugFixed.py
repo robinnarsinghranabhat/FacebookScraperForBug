@@ -19,7 +19,7 @@ access_key = 'EAACEdEose0cBAF5QiCVzdOW2b1zsS2T5feSF822yoKlEykH2oQ6XOIE5X7obhNyQF
 unixtimeStamps = [1512677592, 1512763992, 1512850392, 1512936792, 1513023192, 1513109592]
 
 
-# enter page name you want to scrape and a new-unexpired access token
+#if you just want to use the scraper , go to line 71 and read the instrucitons . don't mess with functions below
 
 # this function scrapes reactions from a post of a page..
 def makeReactionsTableFromPost(pagename, access_token=access_key):
